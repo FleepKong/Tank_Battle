@@ -11,7 +11,7 @@ void ATankPlayerController::BeginPlay()
 	auto tank = GetControlledTank();
 	if(tank)
 	{ 
-		UE_LOG(LogTemp, Warning, TEXT("IM %s"), *tank->GetName())
+		UE_LOG(LogTemp, Warning, TEXT("Main Player is possesing %s"), *tank->GetName())
 	}
 	else 
 	{
