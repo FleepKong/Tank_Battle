@@ -20,6 +20,7 @@ public:
 
 	virtual void BeginPlay();
 	
-	
+protected:
+	ATank* GetPlayerTank() const;
 	
 };
