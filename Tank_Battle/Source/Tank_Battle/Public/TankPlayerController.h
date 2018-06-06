@@ -18,5 +18,5 @@ class TANK_BATTLE_API ATankPlayerController : public APlayerController
 public:
 	ATank * GetControlledTank() const;
 	
-	
+	virtual void BeginPlay();
 };
