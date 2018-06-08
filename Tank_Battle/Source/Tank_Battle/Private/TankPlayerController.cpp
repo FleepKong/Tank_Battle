@@ -2,9 +2,6 @@
 
 #include "TankPlayerController.h"
 
-//tick
-	//super
-	//aim towards crosshair();
 
 void ATankPlayerController::BeginPlay()
 {
@@ -39,16 +36,20 @@ void ATankPlayerController::AimTowardsCrosshair()
 	if (!GetControlledTank()) { return; }
 
 	FVector HitLocation;
-	if(GetSightRayHitLocation(HitLocation))
-	UE_LOG(LogTemp, Warning, TEXT("HitLocation: %s"), *HitLocation.ToString())
-
+	if (GetSightRayHitLocation(HitLocation))
+	{
+		//UE_LOG(LogTemp, Warning, TEXT("HitLocation: %s"), *HitLocation.ToString())
+	}
 }
 
 bool ATankPlayerController::GetSightRayHitLocation(FVector& OutHitLocation) const
 {
-	OutHitLocation = FVector(1.0);
+	int32 ViewportSizeX, ViewportSizeY;
+	GetViewportSize(ViewportSizeX, ViewportSizeY);//get x and y coordinates and populate the data to those variables
+	FVector2D AimPoint(ViewportSizeX * CrosshairXLocation, ViewportSizeY * CrosshairYLocation);
+
+	//auto ScreenLocation = FVector2D(ViewportSizeX * CrosshairXLocation, ViewportSizeY * CrosshairYLocation);
+	//UE_LOG(LogTemp, Warning, TEXT("Screen Location: %s"), *AimPoint.ToString())
 
 	return false;
 }
-
-
