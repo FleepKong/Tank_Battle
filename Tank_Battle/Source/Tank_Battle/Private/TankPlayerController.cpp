@@ -38,7 +38,7 @@ void ATankPlayerController::AimTowardsCrosshair()
 	FVector HitLocation;
 	if (GetSightRayHitLocation(HitLocation))
 	{
-		//UE_LOG(LogTemp, Warning, TEXT("HitLocation: %s"), *HitLocation.ToString())
+		UE_LOG(LogTemp, Warning, TEXT("HitLocation: %s"), *HitLocation.ToString())
 	}
 }
 
@@ -52,7 +52,11 @@ bool ATankPlayerController::GetSightRayHitLocation(FVector& OutHitLocation) cons
 	
 	if (GetLookDirection(AimPoint, WorldDirection))
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Lookd Direction: %s"), *WorldDirection.ToString())
+		//Line-trace along that lookdirection and see what we hit (up to max range)
+		GetLookVectorHitLocation(WorldDirection, OutHitLocation);
+
+
+		//UE_LOG(LogTemp, Warning, TEXT("Lookd Direction: %s"), *WorldDirection.ToString())
 	}
 
 
@@ -67,4 +71,24 @@ bool ATankPlayerController::GetLookDirection(FVector2D ScreenLocation, FVector& 
 {
 	FVector CameraLocation;
 	return DeprojectScreenPositionToWorld(ScreenLocation.X, ScreenLocation.Y, CameraLocation, LookDirection);
+}
+
+bool ATankPlayerController::GetLookVectorHitLocation(FVector LookDirection, FVector HitLocation) const
+{
+	FHitResult HitResult;
+	auto StartLocation = PlayerCameraManager->GetCameraLocation();
+	auto EndLocation = StartLocation + (LookDirection * LineTraceRange);
+	if (GetWorld->LineTraceSingleByChannel(
+		HitResult,
+		StartLocation,
+		EndLocation,
+		ECollisionChannel::ECC_Visibility)
+		)
+		{
+		HitLocation = HitResult.Location;
+		return true;
+		}
+	HitLocation = FVector(0);
+	return false;
+
 }
