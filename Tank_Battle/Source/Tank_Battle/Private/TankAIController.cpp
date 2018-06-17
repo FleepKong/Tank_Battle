@@ -1,6 +1,22 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 #include "TankAIController.h"
 
+
+
+ void ATankAIController::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+	auto AiTank = GetControlledTank();
+
+	if (GetPlayerTank())
+	{
+		//UE_LOG(LogTemp, Warning, TEXT("%s is pointing to Player %s"), *(AiTank->GetName()), *GetPlayerTank()->GetTargetLocation().ToString()) same as bottom,  this my my attempt
+		
+		GetControlledTank()->AimAt(GetPlayerTank()->GetActorLocation());
+		//Fire if ready
+	}
+}
+
 void ATankAIController::BeginPlay()
 {
 	Super::BeginPlay();
@@ -33,6 +49,8 @@ ATank* ATankAIController::GetControlledTank() const
 {
 	return Cast<ATank>(GetPawn()); //this returns the ATank pawn
 }
+
+
 
 
 
