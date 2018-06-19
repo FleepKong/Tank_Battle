@@ -15,15 +15,20 @@ class TANK_BATTLE_API UTankAimingComp : public UActorComponent
 public:	
 	// Sets default values for this component's properties
 	UTankAimingComp();
+	
 	void AimAt(FVector HitLocation);
-
+	
+	// Called every frame
+	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+	
+	void SetBarrelReference(UStaticMeshComponent* BarrelToSet);
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
-public:	
-	// Called every frame
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+private: 
+	UStaticMeshComponent * Barrel = nullptr;
+	
 
 		
 	

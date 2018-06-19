@@ -3,6 +3,11 @@
 #include "Tank.h"
 
 
+void ATank::SetBarrelReference(UStaticMeshComponent * BarrelToSet)
+{
+	TankAimingComp->SetBarrelReference(BarrelToSet);
+}
+
 // Sets default values
 ATank::ATank()
 {
@@ -37,6 +42,5 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 void ATank::AimAt(FVector HitLocation)
 {
 	TankAimingComp->AimAt(HitLocation);
-	UE_LOG(LogTemp, Warning, TEXT("%s Aiming at %s"), *GetName(), *HitLocation.ToString())
 }
 
