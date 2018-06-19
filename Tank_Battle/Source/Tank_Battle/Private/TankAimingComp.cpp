@@ -20,8 +20,32 @@ void UTankAimingComp::SetBarrelReference(UStaticMeshComponent* BarrelToSet)
 
 void UTankAimingComp::AimAt(FVector HitLocation, float LaunchSpeed)
 {
-	auto BarrelLocation = Barrel->GetComponentLocation();
-	UE_LOG(LogTemp, Warning, TEXT("Firing at %f"), LaunchSpeed)
+	if(!Barrel)return;
+
+	FVector OutLaunchvelocity;//OUT PARAM
+	FVector StartLocation = Barrel->GetSocketLocation(FName("Projectile"));
+	
+		//Calculate the OutLaunchVelocity
+
+
+		if (UGameplayStatics::SuggestProjectileVelocity
+		(
+			this,
+			OutLaunchvelocity,
+			StartLocation,
+			HitLocation,
+			LaunchSpeed,
+			false,
+			0.f,
+			0.f,
+			ESuggestProjVelocityTraceOption::DoNotTrace
+		)
+	)
+	{
+		auto TankName = GetOwner()->GetName();
+		auto AimDirection = OutLaunchvelocity.GetSafeNormal();//gets direction of barrel
+		UE_LOG(LogTemp, Warning, TEXT("%s Aiming at at %s"), *TankName, *AimDirection.ToString())
+	}
 }
 
 // Called when the game starts
