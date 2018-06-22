@@ -2,8 +2,8 @@
 
 #include "TankBarrel.h"
 
-void UTankBarrel::Elavate(float DegreesPerSecond)
+void UTankBarrel::Elavate(float RelativeSpeed)
 {
-	UE_LOG(LogTemp, Warning, TEXT("BarrelElavate called at speed %f"), DegreesPerSecond)
+	
 }
 
