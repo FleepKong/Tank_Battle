@@ -1,5 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-
+#include "TankBarrel.h"
 #include "TankAimingComp.h"
 #include "TankBarrel.h"
 #include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
@@ -36,7 +36,10 @@ void UTankAimingComp::AimAt(FVector HitLocation, float LaunchSpeed)
 			StartLocation,
 			HitLocation,
 			LaunchSpeed,
-			ESuggestProjVelocityTraceOption::DoNotTrace
+			false,
+			0,
+			0,
+			ESuggestProjVelocityTraceOption::DoNotTrace //comment this if you want to initiate the unreal bug (we need this)
 		)
 	)
 	{
