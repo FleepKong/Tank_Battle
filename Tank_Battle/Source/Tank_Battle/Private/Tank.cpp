@@ -5,6 +5,14 @@
 #include "TankAimingComp.h"
 
 
+// Called when the game starts or when spawned
+void ATank::BeginPlay()
+{
+	Super::BeginPlay();
+
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void ATank::SetBarrelReference(UTankBarrel * BarrelToSet)
 {
@@ -21,12 +29,7 @@ ATank::ATank()
 	TankAimingComp = CreateDefaultSubobject<UTankAimingComp>(FName("Aiming Componenet"));
 }
 
-// Called when the game starts or when spawned
-void ATank::BeginPlay()
-{
-	Super::BeginPlay();
-	
-}
+
 
 // Called to bind functionality to input
 void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)

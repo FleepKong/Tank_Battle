@@ -2,7 +2,6 @@
 
 #include "TankAimingComp.h"
 #include "TankBarrel.h"
-//#include "TankAimingComp.h"
 #include "TankBarrel.h"
 #include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
 
@@ -64,10 +63,8 @@ void UTankAimingComp::MoveBarrel(FVector AimDirection)
 	auto BarrelRotaion = Barrel->GetForwardVector().Rotation();
 	auto AimAsRotator = AimDirection.Rotation(); 
 	auto DeltaRotator = AimAsRotator - BarrelRotaion;
-	//UE_LOG(LogTemp, Warning, TEXT("AimAsRotator: %s"), *AimAsRotator.ToString())
-		//Move the barrel the right amount this frame
-		Barrel->Elavate(5);
-	//Given a max elevation speed, and the frame time
+	
+	Barrel->Elavate(DeltaRotator.Pitch);
 }
 
 

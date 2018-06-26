@@ -22,10 +22,10 @@ void ATankPlayerController::BeginPlay()
 void ATankPlayerController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	AimTowardsCrosshair();
+	AimTowardsCrosshair();//all the code below is dadicated to the functions below 
 }
 
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ATank* ATankPlayerController::GetControlledTank() const
 {
