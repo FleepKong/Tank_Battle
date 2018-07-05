@@ -2,6 +2,7 @@
 
 #include "Tank.h"
 #include "TankBarrel.h"
+#include "TankTurret.h"
 #include "TankAimingComp.h"
 
 
@@ -19,6 +20,10 @@ void ATank::SetBarrelReference(UTankBarrel * BarrelToSet)
 	TankAimingComp->SetBarrelReference(BarrelToSet);
 }
 
+void ATank::SetTurretReference(UTankTurret * TurretToSet)
+{
+}
+
 // Sets default values
 ATank::ATank()
 {
@@ -28,8 +33,6 @@ ATank::ATank()
 	//No Need to protect points as added at construction
 	TankAimingComp = CreateDefaultSubobject<UTankAimingComp>(FName("Aiming Componenet"));
 }
-
-
 
 // Called to bind functionality to input
 void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
