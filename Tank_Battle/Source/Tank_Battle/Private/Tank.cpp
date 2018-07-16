@@ -22,6 +22,7 @@ void ATank::SetBarrelReference(UTankBarrel * BarrelToSet)
 
 void ATank::SetTurretReference(UTankTurret * TurretToSet)
 {
+	TankAimingComp->SetTurretReference(TurretToSet);
 }
 
 // Sets default values

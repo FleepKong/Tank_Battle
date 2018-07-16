@@ -53,6 +53,8 @@ void UTankAimingComp::AimAt(FVector HitLocation, float LaunchSpeed)
 		auto AimDirection = OutLaunchvelocity.GetSafeNormal();//gets direction of barrel
 		MoveBarrel(AimDirection);
 
+		
+
 		//TODO Move Turret
 
 		auto Time = GetWorld()->GetTimeSeconds();
@@ -74,7 +76,12 @@ void UTankAimingComp::MoveBarrel(FVector AimDirection)
 	
 	Barrel->Elavate(DeltaRotator.Pitch);
 
+	//FRotator TurretRotaion = Turret->GetForwardVector().Rotation(); this shit doesnt work it make the game crash!!!!!!!!!!!!
+	//FRotator AimAsRotator2 = AimDirection.Rotation();
+	//FRotator DeltaRotator2 = AimAsRotator2 - TurretRotaion;
+
 	Turret->Spin(DeltaRotator.Yaw);
 }
+
 
 
