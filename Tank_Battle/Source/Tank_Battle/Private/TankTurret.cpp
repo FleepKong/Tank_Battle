@@ -4,12 +4,10 @@
 
 void UTankTurret::Spin(float RelativeSpeed)
 {
-	//UE_LOG(LogTemp, Warning, TEXT("IZ ME DAH TURRET BIATCH!"))
-	RelativeSpeed = FMath::Clamp<float>(RelativeSpeed, -5, 5);
-	auto ElavationChange = RelativeSpeed * MaxDegreesPerSecond * GetWorld()->DeltaTimeSeconds;
-	auto RawNewElavation = RelativeRotation.Yaw + ElavationChange;
-	auto Elavation = FMath::Clamp<float>(RawNewElavation,  MinRotation, MaxRotation); //gotta use the absolut value to make the turret go all aroundwithout restting
-	SetRelativeRotation(FRotator(0, Elavation, 0));
+	RelativeSpeed = FMath::Clamp<float>(RelativeSpeed, -1, 1);
+	auto RotationChange = RelativeSpeed * MaxDegreesPerSecond * GetWorld()->DeltaTimeSeconds;
+	auto Rotation = RelativeRotation.Yaw + RotationChange;
+	SetRelativeRotation(FRotator(0, Rotation, 0));
 }
 
 
