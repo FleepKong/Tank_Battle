@@ -58,12 +58,12 @@ void UTankAimingComp::AimAt(FVector HitLocation, float LaunchSpeed)
 		//TODO Move Turret
 
 		auto Time = GetWorld()->GetTimeSeconds();
-		UE_LOG(LogTemp, Warning, TEXT("%f:Aim Solution Found!"), Time)
+		//UE_LOG(LogTemp, Warning, TEXT("%f:Aim Solution Found!"), Time)
 	}
 		else
 		{
 			auto Time = GetWorld()->GetTimeSeconds();
-			UE_LOG(LogTemp, Warning, TEXT("%f: No Aim solve found"), Time)
+			//UE_LOG(LogTemp, Warning, TEXT("%f: No Aim solve found"), Time)
 		}
 }
 
@@ -82,6 +82,8 @@ void UTankAimingComp::MoveBarrel(FVector AimDirection)
 
 	Turret->Spin(DeltaRotator.Yaw);
 }
+
+
 
 
 
