@@ -2,6 +2,7 @@
 
 #include "Tank.h"
 #include "TankBarrel.h"
+#include "Projectile.h"
 #include "TankTurret.h"
 #include "TankAimingComp.h"
 
@@ -18,6 +19,7 @@ void ATank::BeginPlay()
 void ATank::SetBarrelReference(UTankBarrel * BarrelToSet)
 {
 	TankAimingComp->SetBarrelReference(BarrelToSet);
+	Barrel = BarrelToSet;
 }
 
 void ATank::SetTurretReference(UTankTurret * TurretToSet)
@@ -26,11 +28,18 @@ void ATank::SetTurretReference(UTankTurret * TurretToSet)
 }
 
 void ATank::Fire()
-{
+{	
+	if (!Barrel) { return; }
+
+	//spawn a projectile at the sockect location
 	
-	UE_LOG(LogTemp, Warning, TEXT("BANG"))
-	
-}
+	auto Projectile = GetWorld()->SpawnActor<AProjectile>(ProjectileBlueprint,
+		Barrel->GetSocketLocation(FName("Projectile")),
+		Barrel->GetSocketRotation(FName("Projectile"))
+			);
+
+	Projectile->LaunchProjectile(LaunchSpeed);
+}		
 
 // Sets default values
 ATank::ATank()
@@ -40,6 +49,7 @@ ATank::ATank()
 
 	//No Need to protect points as added at construction
 	TankAimingComp = CreateDefaultSubobject<UTankAimingComp>(FName("Aiming Componenet"));
+	
 }
 
 // Called to bind functionality to input
